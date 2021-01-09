@@ -9,7 +9,16 @@ class MeteranContrainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+        onTap: (){
+          Navigator.pushNamed(context, '/detail', arguments: {
+            'watt' : meteran.watt,
+            'daya' : meteran.daya,
+            'golongan' : meteran.golongan,
+            'lokasi' : meteran.lokasi,
+          });
+        },
+        child:  Container(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
       height: 220,
       width: double.maxFinite,
@@ -48,7 +57,7 @@ class MeteranContrainer extends StatelessWidget {
                           ]),
                           Positioned(
                             bottom: -60,
-                            right: 0,
+                            right: 13,
                             child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
@@ -56,7 +65,9 @@ class MeteranContrainer extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              child: Row(children: [
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
                                 Text(meteran.lokasi),
                               ],),
                             ),
@@ -114,6 +125,7 @@ class MeteranContrainer extends StatelessWidget {
                     ]),
               ])
       ),
+    ),
     );
   }
 }
