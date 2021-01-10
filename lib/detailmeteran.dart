@@ -192,7 +192,7 @@ class _DetailMeteranState extends State<DetailMeteran> {
         Row(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(20, 20, 130, 20),
+              padding: EdgeInsets.fromLTRB(20, 20, 60, 20),
               child: Text(
                   'Laporan Detail',
                   style: TextStyle(
@@ -202,6 +202,23 @@ class _DetailMeteranState extends State<DetailMeteran> {
                   ),
                 ),
               ),
+            InkWell(
+              onTap:(){},
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                child: Text('Latest',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  )
+                ),
+              ),
+            ),
+            SizedBox(width: 10),
             InkWell(
               onTap:(){
                 createAlertDialog(context).then((namaBaru){

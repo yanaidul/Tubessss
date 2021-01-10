@@ -27,42 +27,39 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[900],
-      appBar: AppBar(
-        shape: BeveledRectangleBorder(
-            borderRadius: BorderRadius.circular(20)
-        ),
-        title: Text(
-          'Device List',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
+        backgroundColor: Colors.blue[900],
+        appBar: AppBar(
+          shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(20)
           ),
+          title: Text(
+            'Device List',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.indigoAccent,
+          elevation: 0.0,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.indigoAccent,
-        elevation: 0.0,
-      ),
 
-      body: FutureBuilder(
-        future: getMeteranData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-              ListView(
-                children: daftarmeteran.map((meteran) =>
-                    MeteranContrainer(meteran: meteran)).toList(),
-              );
-          } else {
-            return Center (
-              child: CircularProgressIndicator()
-            );
-          }
-        }
-      )
+        body: FutureBuilder(
+            future: getMeteranData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                ListView(
+                  children: daftarmeteran.map((meteran) =>
+                      MeteranContrainer(meteran: meteran)).toList(),
+                );
+              } else {
+                return Center (
+                    child: CircularProgressIndicator()
+                );
+              }
+            }
+        )
 
     );
   }
 }
-
-
-
