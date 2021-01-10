@@ -230,7 +230,7 @@ class _DetailMeteranState extends State<DetailMeteran> {
                       setState(() {
                         _dateTime = date;
                         DateTime now = _dateTime;
-                        String formattedDate = DateFormat('yyyy-MM-dd - HH:mm').format(now);
+                        String formattedDate = DateFormat('yyyy-MM-ddTHH:mm:ss').format(now);
                         dateNow = formattedDate;
                         tcVisibility = true;
                       });
