@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'meteran.dart';
-import 'MeteranContainer.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-
+import 'package:flutter/widgets.dart';
+import 'package:tubes/MeteranContainer.dart';
+import 'package:tubes/model/news_article.dart';
+import 'package:tubes/data/api_service.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,55 +10,67 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // buat list kosong berisi data artikel
+  // List<Meteran> _newsArticles = List<NewsArticle>();
+  List<Meteran> _meteran = List<Meteran>();
 
-  getMeteranData() async{
-    var response = await get("https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian");
-    return jsonDecode(response.body);
+  @override
+  void initState() {
+    // _populateNewsArticles();
+    // _melakukan fetch pada data news
+    _fetchData();
+    super.initState();
   }
 
-  List<Meteran> daftarmeteran = [
-    Meteran(watt: '543', daya: '1000Va', golongan: 'R1/TA', lokasi: 'Toko'),
-    Meteran(watt: '345', daya: '1000Va', golongan: 'R1/TA', lokasi: 'Kantin'),
-    Meteran(watt: '322', daya: '1000Va', golongan: 'R1/TA', lokasi: 'Rumah'),
-  ];
+  // void _populateNewsArticles() {
+  void _fetchData() {
+    // Webservice().load(NewsArticle.all).then((newsArticles) => {
+    Webservice().load(Meteran.all).then((meteran) => {
+          // setState(() => {_newsArticles = newsArticles})
+          setState(() => {_meteran = meteran})
+        });
+  }
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //       backgroundColor: Colors.blue[900],
+  //       appBar: AppBar(
+  //         shape:
+  //             BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
+  //         title: Text(
+  //           'Device List',
+  //           style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+  //         ),
+  //         centerTitle: true,
+  //         backgroundColor: Colors.indigoAccent,
+  //         elevation: 0.0,
+  //       ),
+  //       body: ListView.builder(
+  //         itemCount: _newsArticles.length,
+  //         itemBuilder: _buildItemsForListView,
+  //       ));
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.blue[900],
         appBar: AppBar(
-          shape: BeveledRectangleBorder(
-              borderRadius: BorderRadius.circular(20)
-          ),
+          shape:
+              BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
           title: Text(
             'Device List',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           backgroundColor: Colors.indigoAccent,
           elevation: 0.0,
         ),
-
-        body: FutureBuilder(
-            future: getMeteranData(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                ListView(
-                  children: daftarmeteran.map((meteran) =>
-                      MeteranContrainer(meteran: meteran)).toList(),
-                );
-              } else {
-                return Center (
-                    child: CircularProgressIndicator()
-                );
-              }
-            }
-        )
-
-    );
+        body: ListView(
+          children: _meteran
+              .map((meteran) => MeteranContrainer(meteran: meteran))
+              .toList(),
+        ));
   }
 }
