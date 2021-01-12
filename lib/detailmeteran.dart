@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tubes/WaktuKWHContainer.dart';
+import 'package:tubes/waktukwh.dart';
 import 'meteran.dart';
 import 'MeteranContainer.dart';
 import 'package:intl/intl.dart';
@@ -10,6 +12,17 @@ class DetailMeteran extends StatefulWidget {
 }
 
 class _DetailMeteranState extends State<DetailMeteran> {
+
+  List<Waktukwh> daftarwaktukwh = [
+    Waktukwh(waktu: '00:00:00', kwh: '0KWH'),
+    Waktukwh(waktu: '00:00:00', kwh: '0KWH'),
+    Waktukwh(waktu: '00:00:00', kwh: '0KWH'),
+    Waktukwh(waktu: '00:00:00', kwh: '0KWH'),
+    Waktukwh(waktu: '00:00:00', kwh: '0KWH'),
+    Waktukwh(waktu: '00:00:00', kwh: '0KWH'),
+  ];
+
+
   DateTime _dateTime;
   String dateNow;
   Map data = {};
@@ -83,7 +96,8 @@ class _DetailMeteranState extends State<DetailMeteran> {
       ),
 
       body: ListView(
-          children: <Widget>[  Container(
+          children: <Widget>[
+          Container(
           padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
           height: 220,
           width: double.maxFinite,
@@ -122,15 +136,18 @@ class _DetailMeteranState extends State<DetailMeteran> {
                               ]),
                               Positioned(
                                 bottom: -60,
-                                right: 13,
+                                right: 10,
                                 child: Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
                                     color: Colors.indigo[100],
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                  child: Row(children: [
+                                  width: 80.0,
+                                  height: 35.0,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
                                     Text(data['lokasi']),
                                   ],),
                                 ),
@@ -288,85 +305,17 @@ class _DetailMeteranState extends State<DetailMeteran> {
                 ),
               ],
             ),
-            SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget> [
-                Visibility(
-                  visible: tcVisibility,
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
-                  child: Row (children: [
-                  Column (
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Text('Pemakaian Hari Ini'),
-                    Text(
-                      data['watt'] + ' kWH',
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        color: Colors.indigoAccent,
-                        fontWeight: FontWeight.bold,
-                      ),)
-                  ],),
-                    SizedBox(width: 140),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(0, 10, 5, 10),
-                    child: Icon(
-                        Icons.bolt,
-                        size : 50,
-                    ) ,
-                    )
-                    ],)
-                ),
-                ),
-              ],
-            ),
             SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget> [
-                Visibility(
-                  visible: tcVisibility,
-                  child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
-                      child: Row (children: [
-                        Column (
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Perbedaan Pemakaian'),
-                            Text(
-                              '0' + ' kWH',
-                              style: TextStyle(
-                                fontSize: 40.0,
-                                color: Colors.greenAccent,
-                                fontWeight: FontWeight.bold,
-                              ),)
-                          ],),
-                        SizedBox(width: 140),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(25, 10, 5, 10),
-                          child: Icon(
-                            Icons.offline_bolt_outlined,
-                            size : 50,
-                          ) ,
-                        )
-                      ],)
-                  ),
-                ),
-              ],
+            Visibility(
+            visible: tcVisibility,
+            child: Container(
+              child: Column(
+                children: daftarwaktukwh.map((waktukwh) => WaktuKWHContainer(waktukwh : waktukwh)).toList(),
+              )
             )
-      ]
+            )
+
+      ],
     ),
     );
   }

@@ -57,14 +57,15 @@ class MeteranContrainer extends StatelessWidget {
                           ]),
                           Positioned(
                             bottom: -60,
-                            right: 13,
+                            right: 10,
                             child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 color: Colors.indigo[100],
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              width: 80.0,
+                              height: 35.0,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
