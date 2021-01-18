@@ -12,7 +12,7 @@ class Meteran {
 
   static Resource<List<Meteran>> get all {
     return Resource(
-        url: Constants.HEADLINE_NEWS_URL,
+        url: Constants.BASE_URL,
         parse: (response) {
           final result = json.decode(response.body);
           Iterable list = result['articles'];

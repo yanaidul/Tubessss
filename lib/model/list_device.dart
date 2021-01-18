@@ -12,7 +12,7 @@ class Meteran {
 
   static Resource<List<Meteran>> get all {
     return Resource(
-        url: Constants.HEADLINE_NEWS_URL,
+        url: Constants.BASE_URL,
         parse: (response) {
           final result = json.decode(response.body);
           Iterable list = result;
@@ -21,11 +21,18 @@ class Meteran {
   }
 
   factory Meteran.fromJson(Map<String, dynamic> json) {
-    print(json);
+    // cek nilai kosong, apabila nilai kosong maka ganti dengan tulisan "KOSONG"
+    json['id'] = json['id'] != null ? json['id'].toString() : 'KOSONG';
+
+    json['macaddress'] =
+        json['macaddress'] != null ? json['macaddress'] : 'KOSONG';
+
+    json['name'] = json['name'] != null ? json['name'] : 'KOSONG';
+
     return Meteran(
-        watt: json['name'],
-        daya: json['name'],
+        watt: json['id'],
+        daya: json['macaddress'],
         golongan: json['name'],
-        lokasi: json['name']);
+        lokasi: json['id']);
   }
 }

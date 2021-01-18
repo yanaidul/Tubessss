@@ -14,7 +14,7 @@ class Webservice {
     if (response.statusCode == 200) {
       return resource.parse(response);
     } else {
-      throw Exception('Failed to load data!');
+      throw Exception('Gagal melakukan fetch data!');
     }
   }
 }
