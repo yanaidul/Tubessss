@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tubes/model/news_article.dart';
+// import 'package:tubes/model/news_article.dart';
+import 'package:tubes/model/list_device.dart';
 
 class MeteranContrainer extends StatelessWidget {
   final Meteran meteran;
@@ -11,10 +12,15 @@ class MeteranContrainer extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '/detail', arguments: {
-          'watt': meteran.watt,
-          'daya': meteran.daya,
-          'golongan': meteran.golongan,
-          'lokasi': meteran.lokasi,
+          // 'watt': meteran.watt,
+          // 'daya': meteran.daya,
+          // 'golongan': meteran.golongan,
+          // 'lokasi': meteran.lokasi,
+
+          'watt': meteran.watt != null ? meteran.watt : 'kosong',
+          'daya': meteran.daya != null ? meteran.daya : 'kosong',
+          'golongan': meteran.golongan != null ? meteran.golongan : 'kosong',
+          'lokasi': meteran.lokasi != null ? meteran.lokasi : 'kosong',
         });
       },
       child: Container(

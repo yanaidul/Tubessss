@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tubes/MeteranContainer.dart';
-import 'package:tubes/model/news_article.dart';
+// import 'package:tubes/model/news_article.dart';
+import 'package:tubes/model/list_device.dart';
 import 'package:tubes/data/api_service.dart';
 
 class Home extends StatefulWidget {
