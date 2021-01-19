@@ -3,9 +3,10 @@ import 'package:tubes/data/api_service.dart';
 import 'package:tubes/utils/constants.dart';
 
 // data dummy
-// List<String> dummy_daya = ['2200', '5500'];
-// List<String> dummy_golongan = ['R-1/TR', 'R-1/TR'];
-// List<String> dummy_lokasi = ['Rumah Dayeuhkolot', 'Rumah Batununggal'];
+List<String> dummy_daya = ['zonk', '2200', '5500'];
+List<String> dummy_golongan = ['zonk', 'R-1/TR', 'R-1/TR'];
+List<String> dummy_lokasi = ['zonk', 'Rumah Dayeuhkolot', 'Rumah Batununggal'];
+var perulangan = 0;
 
 class Meteran {
   String watt;
@@ -25,20 +26,13 @@ class Meteran {
   }
 
   factory Meteran.fromJson(Map<String, dynamic> json) {
-    // cek nilai kosong, apabila nilai kosong maka ganti dengan tulisan 0
+    // cek nilai kosong, apabila nilai kosong maka ganti dengan tulisan "KOSONG"
     json['id'] = json['id'] != null ? json['id'].toString() : '0';
 
-    // isi data daya
-    json['macaddress'] = ['2200', '5500'];
+    json['macaddress'] = json['macaddress'] != null ? json['macaddress'] : '0';
 
-    // list data golongan
-    json['name'] = ['R-1/TR', 'R-1/TR'];
+    json['name'] = json['name'] != null ? json['name'] : '0';
 
-    // list data lokasi
-    json['records']['timestamp'] = ['Rumah Dayeuhkolot', 'Rumah Batununggal'];
-
-    // ambil data latest reading sebagai watt
-    // apabila kosong, buat dictionary baru didalam record
     List temp = json['records'];
     json['records'] = json['records'].length != 0
         ? json['records']
@@ -46,10 +40,16 @@ class Meteran {
 
     json['records'] = temp.last['reading'].toString();
 
+    // perulangan
+    perulangan += 1;
+
+    print(json['records']);
+    print(dummy_daya[perulangan]);
     return Meteran(
-        watt: json['records'],
-        daya: json['macaddress'],
-        golongan: json['name'],
-        lokasi: json['records']['timestamp']);
+      watt: json['records'],
+      daya: dummy_daya[perulangan],
+      golongan: dummy_golongan[perulangan],
+      lokasi: dummy_lokasi[perulangan],
+    );
   }
 }

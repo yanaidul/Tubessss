@@ -40,7 +40,7 @@ class MeteranContrainer extends StatelessWidget {
                         Text(
                           meteran.watt,
                           style: TextStyle(
-                            fontSize: 40.0,
+                            fontSize: 20.0,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
