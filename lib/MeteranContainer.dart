@@ -16,11 +16,6 @@ class MeteranContrainer extends StatelessWidget {
           'daya': meteran.daya,
           'golongan': meteran.golongan,
           'lokasi': meteran.lokasi,
-
-          // 'watt': meteran.watt != null ? 'meteran.watt' : 'kosong',
-          // 'daya': meteran.daya != null ? meteran.daya : 'kosong',
-          // 'golongan': meteran.golongan != null ? meteran.golongan : 'kosong',
-          // 'lokasi': meteran.lokasi != null ? meteran.lokasi : 'kosong',
         });
       },
       child: Container(
