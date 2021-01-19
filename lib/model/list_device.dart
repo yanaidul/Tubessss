@@ -7,6 +7,7 @@ List<String> dummy_daya = ['zonk', '2200', '5500'];
 List<String> dummy_golongan = ['zonk', 'R-1/TR', 'R-1/TR'];
 List<String> dummy_lokasi = ['zonk', 'Rumah Dayeuhkolot', 'Rumah Batununggal'];
 var perulangan = 0;
+var latest;
 
 class Meteran {
   String watt;
@@ -38,15 +39,13 @@ class Meteran {
         ? json['records']
         : json['records'].insert(0, {'reading': '0'});
 
-    json['records'] = temp.last['reading'].toString();
+    latest = temp.last['reading'].toString();
 
     // perulangan
     perulangan += 1;
 
-    print(json['records']);
-    print(dummy_daya[perulangan]);
     return Meteran(
-      watt: json['records'],
+      watt: latest,
       daya: dummy_daya[perulangan],
       golongan: dummy_golongan[perulangan],
       lokasi: dummy_lokasi[perulangan],
